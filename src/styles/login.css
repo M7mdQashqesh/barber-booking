@@ -1,0 +1,171 @@
+main.split {
+  display: flex;
+  text-align: center;
+}
+
+main.split > div {
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Right Side */
+main.split > .right-side {
+  flex: 2;
+  padding: 40px;
+  position: relative;
+}
+
+@media (max-width: 991px) {
+  main.split > .right-side {
+    padding: 0px;
+  }
+}
+
+/* Title */
+main.split > .right-side .title p:first-of-type {
+  font-size: 40px;
+  font-weight: bold;
+}
+
+main.split > .right-side .title p:last-of-type {
+  width: 95%;
+  margin: 20px auto;
+  line-height: 1.6;
+}
+/* Title */
+
+/* Form */
+main.split > .right-side form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 60px;
+}
+
+main.split > .right-side form > input {
+  padding: 10px 20px 10px 10px;
+  border: 2px solid black;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 20px;
+}
+
+main.split > .right-side form > a {
+  margin-bottom: 20px;
+  margin-right: auto;
+  color: black;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  width: fit-content;
+}
+
+main.split > .right-side form > a:hover {
+  text-decoration: underline;
+}
+
+main.split > .right-side form > input[type="submit"] {
+  background-color: black;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+main.split > .right-side form > input[type="submit"]:hover {
+  background-color: white;
+  color: black;
+}
+/* Form */
+
+/* Google Login */
+main.split > .right-side .alternative-login > p {
+  margin: 20px 0 30px;
+  position: relative;
+}
+
+main.split > .right-side .alternative-login > p::before {
+  content: "";
+  position: absolute;
+  background-color: gray;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: -100;
+  width: 100%;
+  height: 1px;
+}
+
+main.split > .right-side .alternative-login > p::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 30px;
+  width: 160px;
+  background-color: white;
+  z-index: -10;
+}
+
+main.split > .right-side .alternative-login > button {
+  padding: 10px 20px;
+  border: 2px solid black;
+  background-color: white;
+  border-radius: 25px;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 20px;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.2s ease;
+}
+
+main.split > .right-side .alternative-login > button:hover {
+  background-color: black;
+  color: white;
+}
+/* Google Login */
+
+/* Create Account */
+.right-side > p.create-account {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.right-side > p.create-account > a {
+  color: gray;
+  transition: 0.3s ease;
+}
+.right-side > p.create-account > a:hover {
+  text-decoration: underline;
+  color: black;
+}
+/* Create Account */
+/* Right Side */
+
+/* Left Side */
+main.split > .left-side {
+  flex: 2;
+}
+
+@media (max-width: 991px) {
+  main.split > .left-side {
+    display: none;
+  }
+}
+
+main.split > .left-side .image {
+  padding: 50px;
+  border-radius: 15px;
+  height: 92%;
+  display: flex;
+  background-color: #e8e8f0;
+}
+
+main.split > .left-side img {
+  max-width: 100%;
+}
+/* Left Side */

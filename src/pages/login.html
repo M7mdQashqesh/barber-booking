@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title Tag -->
+    <title>Barbershop | Login Page</title>
+    <!-- FontAwesome Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Style CSS File -->
+    <link rel="stylesheet" href="../styles/style.css" />
+    <!-- Login CSS File -->
+    <link rel="stylesheet" href="../styles/login.css" />
+  </head>
+  <body>
+    <div class="container">
+      <main class="split">
+        <!-- Right Side (Form) -->
+        <div class="right-side">
+          <!-- Title -->
+          <div class="title">
+            <p>مرحباً بعودتك</p>
+            <p>
+              مرحباً بك في نظام حجز مواعيد صالون الحلاقة الخاص بنا. الرجاء تسجيل
+              الدخول باستخدام حسابك للوصول إلى مواعيد الحلاقة السريعة والمريحة.
+              نحن هنا لنوفر لك أفضل خدمة بأقل وقت انتظار.
+            </p>
+          </div>
+          <!-- Title -->
+
+          <!-- Form -->
+          <form action="#">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              placeholder="البريد الإلكتروني"
+              required
+            />
+            <input
+              type="password"
+              name="password"
+              id="password"
+              placeholder="كلمة المرور"
+              required
+            />
+            <a href="#">هل نسيت كلمة المرور؟</a>
+            <input type="submit" value="تسجيل الدخول" />
+          </form>
+          <!-- Form -->
+
+          <!-- Google Login -->
+          <div class="alternative-login">
+            <p>أو تسجيل الدخول عن طريق</p>
+            <button type="button">
+              <i class="fa-brands fa-google"></i> تسجيل الدخول عن طريق Google
+            </button>
+          </div>
+          <!-- Google Login -->
+
+          <!-- Create Account -->
+          <p class="create-account">ليس لديك حساب؟ <a href="">انشئ حسابك</a></p>
+          <!-- Create Account -->
+        </div>
+        <!-- Right Side (Form) -->
+
+        <!-- Left Side (SVG) -->
+        <div class="left-side">
+          <div class="image">
+            <img src="../assets/undraw_barber.svg" alt="undraw_barber" />
+          </div>
+        </div>
+        <!-- Left Side (SVG) -->
+      </main>
+    </div>
+
+    <!-- Login JS File -->
+    <script type="module" src="../../dist/scripts/login.js"></script>
+  </body>
+</html>
