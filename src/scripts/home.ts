@@ -5,6 +5,20 @@ window.localStorage.setItem(
   window.localStorage.getItem("appointments")! || "[]"
 );
 
+if (!window.localStorage.getItem("user"))
+  window.location.href = "../pages/login.html";
+
+let logoutBtn = document.getElementById(
+  "logout-btn"
+) as HTMLButtonElement | null;
+logoutBtn?.addEventListener("click", () => {
+  window.localStorage.removeItem("user");
+  popup("تم تسجيل الخروج بنجاح");
+  setTimeout(() => {
+    window.location.href = "../pages/login.html";
+  }, 1500);
+});
+
 const days: string[] = [
   "الأحد",
   "الإثنين",

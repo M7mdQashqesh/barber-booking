@@ -92,12 +92,11 @@
   transition: 0.2s ease;
 }
 
-@media (max-width:767px) {
-.appointments .appointments-area ul li {
-  width: 100%;
+@media (max-width: 767px) {
+  .appointments .appointments-area ul li {
+    width: 100%;
+  }
 }
-}
-
 
 .appointments .appointments-area ul li.select {
   background-color: black;
@@ -130,3 +129,48 @@ button.book-appointments.disable {
   background-color: gray;
 }
 /* appointments */
+
+/* Header */
+header {
+  margin-top: 10px;
+}
+/* Logout Btn */
+.logout-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 15px;
+  gap: 15px;
+  background-color: black;
+  outline: 3px black solid;
+  outline-offset: -3px;
+  border-radius: 5px;
+  border: none;
+  cursor: pointer;
+  transition: 400ms;
+}
+
+.logout-btn:hover {
+  background-color: transparent;
+}
+
+.logout-btn i {
+  color: white;
+  transition: 400ms;
+}
+
+.logout-btn:hover i {
+  color: black;
+}
+
+.logout-btn .text {
+  color: white;
+  font-weight: 700;
+  font-size: 1em;
+  transition: 400ms;
+}
+
+.logout-btn:hover .text {
+  color: black;
+}
+/* Logout Btn */
