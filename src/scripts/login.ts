@@ -1,11 +1,9 @@
 import { popup } from "../components/popup.js";
 
 const form = document.querySelector("form");
-form?.addEventListener("submit", (e) => {
+form?.addEventListener("submit", (e): void => {
   e.preventDefault();
-  if (validateLogin()) {
-    // TODO: أضف هنا كود تسجيل الدخول باستخدام Firebase Auth
-  }
+  if (!validateLogin()) return;
 });
 
 function validateLogin(): boolean {
@@ -21,17 +19,9 @@ function validateLogin(): boolean {
     return false;
   }
 
-  if (emailInput.value.trim() === "") {
-    popup("يرجى إدخال البريد الإلكتروني");
-    emailInput.focus();
+  if (emailInput.value.trim() === "" || passwordInput.value.trim() === "") {
+    popup("يرجى إدخال جميع الحقول");
     return false;
   }
-
-  if (passwordInput.value.trim() === "") {
-    popup("يرجى إدخال كلمة المرور");
-    passwordInput.focus();
-    return false;
-  }
-
   return true;
 }

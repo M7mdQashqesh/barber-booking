@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Title Tag -->
-    <title>Barbershop | Login Page</title>
+    <title>Barbershop | Signup Page</title>
     <!-- FontAwesome Library -->
     <link
       rel="stylesheet"
@@ -26,17 +26,22 @@
         <div class="right-side">
           <!-- Title -->
           <div class="title">
-            <p>مرحباً بعودتك</p>
+            <p>انشئ حساب جديد</p>
             <p>
-              مرحباً بك في نظام حجز مواعيد صالون الحلاقة الخاص بنا. الرجاء تسجيل
-              الدخول باستخدام حسابك للوصول إلى مواعيد الحلاقة السريعة والمريحة.
-              نحن هنا لنوفر لك أفضل خدمة بأقل وقت انتظار.
+              أنشئ حسابك الآن للتمتع بخدمات الحلاقة السريعة والمريحة. الرجاء ملء
+              البيانات التالية للبدء.
             </p>
           </div>
           <!-- Title -->
 
           <!-- Form -->
           <form action="#">
+            <input
+              type="text"
+              name="fullname"
+              id="fullname"
+              placeholder="الاسم الكامل"
+            />
             <input
               type="email"
               name="email"
@@ -49,25 +54,30 @@
               id="password"
               placeholder="كلمة المرور"
             />
-            <a href="#">هل نسيت كلمة المرور؟</a>
-            <input type="submit" value="تسجيل الدخول" />
+            <input
+              type="password"
+              name="confirm_password"
+              id="confirm_password"
+              placeholder="تأكيد كلمة المرور"
+            />
+            <input type="submit" value="إنشاء الحساب" />
           </form>
           <!-- Form -->
 
-          <!-- Google Login -->
+          <!-- Google Signup -->
           <div class="alternative-login">
-            <p>أو تسجيل الدخول عن طريق</p>
-            <button type="button">
-              <i class="fa-brands fa-google"></i> تسجيل الدخول عن طريق Google
+            <p>أو التسجيل عن طريق</p>
+            <button type="button" id="google-btn">
+              <i class="fa-brands fa-google"></i> التسجيل عن طريق Google
             </button>
           </div>
-          <!-- Google Login -->
+          <!-- Google Signup -->
 
-          <!-- Create Account -->
+          <!-- Login Link -->
           <p class="create-account">
-            ليس لديك حساب؟ <a href="./signup.html">انشئ حسابك</a>
+            لديك حساب بالفعل؟ <a href="./login.html">تسجيل الدخول</a>
           </p>
-          <!-- Create Account -->
+          <!-- Login Link -->
         </div>
         <!-- Right Side (Form) -->
 
@@ -81,7 +91,9 @@
       </main>
     </div>
 
-    <!-- Login JS File -->
-    <script type="module" src="../../dist/scripts/login.js"></script>
+    <!-- Firebase config -->
+    <script type="module" src="../../dist/config/firebase.js"></script>
+    <!-- Signup JS File  -->
+    <script type="module" src="../../dist/scripts/signup.js"></script>
   </body>
 </html>
