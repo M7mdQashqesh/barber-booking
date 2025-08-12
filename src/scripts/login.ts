@@ -1,12 +1,8 @@
 import { popup } from "../components/popup.js";
 
 const form = document.querySelector("form");
-form?.addEventListener("submit", (e): void => {
+form?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  if (!validateLogin()) return;
-});
-
-function validateLogin(): boolean {
   const emailInput = document.querySelector(
     "input[type='email']"
   ) as HTMLInputElement | null;
@@ -14,6 +10,13 @@ function validateLogin(): boolean {
     "input[type='password']"
   ) as HTMLInputElement | null;
 
+  if (!validateLogin(emailInput!, passwordInput!)) return;
+});
+
+function validateLogin(
+  emailInput: HTMLInputElement,
+  passwordInput: HTMLInputElement
+): boolean {
   if (!emailInput || !passwordInput) {
     console.error("No Input Fields");
     return false;

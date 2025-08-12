@@ -1,18 +1,3 @@
-import {
-  createUserWithEmailAndPassword,
-  GoogleAuthProvider,
-  signInWithPopup,
-  // @ts-ignore
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import {
-  collection,
-  addDoc,
-  getDoc,
-  setDoc,
-  doc,
-  // @ts-ignore
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-import { auth, firestore } from "../config/firebase.js";
 import { popup } from "../components/popup.js";
 
 const form = document.querySelector("form");
@@ -41,39 +26,6 @@ form?.addEventListener("submit", async (e) => {
     )
   )
     return;
-
-  try {
-    const userCredential = await createUserWithEmailAndPassword(
-      auth,
-      emailInput?.value!,
-      passwordInput?.value!
-    );
-    const user = userCredential.user;
-    await setDoc(doc(firestore, "users", user.uid), {
-      createdAt: new Date().toISOString(),
-      fullname: fullNameInput?.value,
-      email: emailInput?.value,
-    });
-
-    popup("تم انشاء الحساب بنجاح");
-
-    [fullNameInput, emailInput, passwordInput, confirmPasswordInput].forEach(
-      (input) => {
-        if (input) input.value = "";
-      }
-    );
-  } catch (error: any) {
-    if (error.code === "auth/email-already-in-use") {
-      popup("هذا البريد الإلكتروني مستخدم مسبقاً");
-    } else {
-      console.error("Failed To SignIn: ", error);
-      popup("حدث خطأ أثناء إنشاء الحساب");
-    }
-    return;
-  }
-  setTimeout(() => {
-    window.location.href = "../pages/login.html";
-  }, 1500);
 });
 
 function validateSignup(
@@ -125,30 +77,4 @@ const googleBtn = document.getElementById(
   "google-btn"
 ) as HTMLButtonElement | null;
 
-googleBtn?.addEventListener("click", async () => {
-  try {
-    const provider = new GoogleAuthProvider();
-    const userCredential = await signInWithPopup(auth, provider);
-    const user = userCredential.user;
-
-    const useRef = doc(firestore, "users", user.uid);
-    const userSnap = await getDoc(useRef);
-
-    if (!userSnap.exists()) {
-      await setDoc(doc(firestore, "users", user.uid), {
-        createdAt: new Date().toISOString(),
-        fullname: user.displayName,
-        email: user.email,
-      });
-      popup("تم انشاء الحساب بنجاح");
-    } else {
-      popup("هذا الحساب موجود بالفعل");
-    }
-  } catch (error) {
-    console.log("Error With Create Google Account: ", error);
-    return;
-  }
-  setTimeout(() => {
-    window.location.href = "../pages/login.html";
-  }, 1500);
-});
+googleBtn?.addEventListener("click", async () => {});
