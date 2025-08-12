@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <!-- Meta Tags -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Title Tag -->
+    <title>Barbershop | Home Page</title>
+    <!-- FontAwesome Library -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+      integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Style CSS File -->
+    <link rel="stylesheet" href="../styles/style.css" />
+    <!-- Login CSS File -->
+    <link rel="stylesheet" href="../styles/home.css" />
+  </head>
+  <body>
+    <div class="container">
+      <!-- Banner -->
+      <div class="banner">
+        <p class="text">الحلاق محمد اسماعيل ابو ريان</p>
+        <div class="day-date">
+          <div class="day" id="day"></div>
+          <div class="date" id="date"></div>
+        </div>
+      </div>
+      <!-- Banner -->
+
+      <!-- Book appointments -->
+      <div class="appointments">
+        <p>إختار الموعد</p>
+        <div class="appointments-area">
+          <ul></ul>
+        </div>
+      </div>
+      <!-- Book appointments -->
+
+      <button class="book-appointments" id="book-appointments" type="button">
+        إحجز الموعد
+      </button>
+    </div>
+
+    <!-- Home JS File -->
+    <script type="module" src="../../dist/scripts/home.js"></script>
+  </body>
+</html>

@@ -52,7 +52,7 @@ ul {
 
 .popup {
   animation: show-popup 0.3s forwards;
-  position: absolute;
+  position: fixed;
   top: 20px;
   right: 10px;
   background-color: black;
