@@ -1,3 +1,7 @@
+.hidden {
+  display: none;
+}
+
 main.split {
   display: flex;
   text-align: center;
@@ -133,10 +137,10 @@ main.split > .right-side .alternative-login > button {
   transition: 0.2s ease;
 }
 
-@media (max-width:767px) {
-main.split > .right-side .alternative-login > button {
-  margin-bottom: 120px;
-}
+@media (max-width: 767px) {
+  main.split > .right-side .alternative-login > button {
+    margin-bottom: 120px;
+  }
 }
 
 main.split > .right-side .alternative-login > button:hover {

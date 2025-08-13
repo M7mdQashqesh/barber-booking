@@ -4,7 +4,18 @@ import {
   doc,
   getDoc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
-import { signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import {
+  signInWithEmailAndPassword,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged,
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+
+onAuthStateChanged(auth, (user: any) => {
+  if (user) window.location.href = "../pages/index.html";
+  else document.body.classList.remove("hidden");
+});
 
 const form = document.querySelector("form");
 form?.addEventListener("submit", async (e) => {
@@ -67,3 +78,34 @@ function validateLogin(
   }
   return true;
 }
+
+const googleBtn = document.getElementById(
+  "google-btn"
+) as HTMLInputElement | null;
+
+googleBtn?.addEventListener("click", async () => {
+  try {
+    const provider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, provider);
+    const user = result.user;
+
+    if (!user.displayName || !user.email)
+      throw new Error("Google Account Is Missing Email or Display Name");
+
+    const useRef = doc(firestore, "users", user.email);
+    const userSnap = await getDoc(useRef);
+
+    if (!userSnap.exists()) {
+      popup("لا يوجد حساب لهذا البريد الإلكتروني");
+      await signOut(auth);
+    } else {
+      popup("تم تسجيل الدخول بنجاح");
+
+      setTimeout(() => {
+        window.location.href = "../pages/index.html";
+      }, 1500);
+    }
+  } catch (error) {
+    console.error("Google SignIn Error:", error);
+  }
+});

@@ -9,8 +9,14 @@ import {
   GoogleAuthProvider,
   signInWithPopup,
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { Iauth } from "../types/authTypes.js";
+
+onAuthStateChanged(auth, (user: any) => {
+  if (user) window.location.href = "../pages/index.html";
+  else document.body.classList.remove("hidden");
+});
 
 const form = document.querySelector("form");
 form?.addEventListener("submit", async (e) => {
