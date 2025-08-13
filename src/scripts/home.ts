@@ -5,9 +5,6 @@ window.localStorage.setItem(
   window.localStorage.getItem("appointments")! || "[]"
 );
 
-if (!window.localStorage.getItem("user"))
-  window.location.href = "../pages/login.html";
-
 let logoutBtn = document.getElementById(
   "logout-btn"
 ) as HTMLButtonElement | null;
