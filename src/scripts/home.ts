@@ -1,19 +1,31 @@
 import { popup } from "../components/popup.js";
+import { auth } from "../config/firebase.js";
+import {
+  onAuthStateChanged,
+  signOut,
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
-window.localStorage.setItem(
-  "appointments",
-  window.localStorage.getItem("appointments")! || "[]"
-);
+onAuthStateChanged(auth, (user: any) => {
+  if (!user) window.location.href = "../pages/login.html";
+  else document.body.classList.remove("hidden");
+});
 
 let logoutBtn = document.getElementById(
   "logout-btn"
 ) as HTMLButtonElement | null;
-logoutBtn?.addEventListener("click", () => {
-  window.localStorage.removeItem("user");
-  popup("تم تسجيل الخروج بنجاح");
-  setTimeout(() => {
-    window.location.href = "../pages/login.html";
-  }, 1500);
+logoutBtn?.addEventListener("click", async () => {
+  try {
+    await signOut(auth);
+
+    popup("تم تسجيل الخروج بنجاح");
+    window.localStorage.removeItem("user");
+
+    setTimeout(() => {
+      window.location.href = "../pages/login.html";
+    }, 1500);
+  } catch (error) {
+    console.error("Failed SignOut: ", error);
+  }
 });
 
 const days: string[] = [

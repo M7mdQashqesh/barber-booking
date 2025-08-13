@@ -1,5 +1,5 @@
-import { popup } from "../../dist/components/popup.js";
-import { firestore, auth } from "../../dist/config/firebase.js";
+import { popup } from "../components/popup.js";
+import { firestore, auth } from "../config/firebase.js";
 import {
   doc,
   setDoc,
@@ -10,7 +10,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import { Iauth } from "../../dist/types/authTypes.js";
+import { Iauth } from "../types/authTypes.js";
 
 const form = document.querySelector("form");
 form?.addEventListener("submit", async (e) => {
@@ -60,13 +60,13 @@ form?.addEventListener("submit", async (e) => {
     await setDoc(useRef, userData);
 
     popup("تم انشاء الحساب بنجاح");
-    const userInfo = [
+    const userInputs = [
       fullNameInput,
       emailInput,
       passwordInput,
       confirmPasswordInput,
     ];
-    userInfo.forEach((input) => {
+    userInputs.forEach((input) => {
       if (input) input.value = "";
     });
 
@@ -153,7 +153,7 @@ googleBtn?.addEventListener("click", async () => {
         window.location.href = "../pages/login.html";
       }, 1500);
     } else popup("الحساب مسجل بالفعل");
-  } catch (error:any) {
+  } catch (error: any) {
     console.error("Error while Create Account: ", error.message);
   }
 });
