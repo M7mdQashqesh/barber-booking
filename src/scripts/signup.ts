@@ -13,7 +13,7 @@ import { Iauth } from "../types/authTypes.js";
 
 onAuthStateChanged(auth, (user: any) => {
   if (user && window.localStorage.getItem("user"))
-    window.location.href = "../pages/index.html";
+    window.location.href = "../../index.html";
   else document.body.classList.remove("hidden");
 });
 

@@ -84,6 +84,7 @@ main.split > .right-side form > a:hover {
 
 main.split > .right-side form > input[type="submit"] {
   background-color: black;
+  margin-bottom: 120px;
   color: white;
   cursor: pointer;
   transition: 0.2s ease;

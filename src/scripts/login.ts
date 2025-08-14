@@ -6,13 +6,12 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 import {
   signInWithEmailAndPassword,
-  signOut,
   onAuthStateChanged,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 onAuthStateChanged(auth, (user: any) => {
   if (user && window.localStorage.getItem("user"))
-    window.location.href = "../pages/index.html";
+    window.location.href = "../../index.html";
   else document.body.classList.remove("hidden");
 });
 
@@ -53,7 +52,7 @@ form?.addEventListener("submit", async (e) => {
         JSON.stringify({ email: user.email, uid: user.uid })
       );
       setTimeout(() => {
-        window.location.href = "../pages/index.html";
+        window.location.href = "../../index.html";
       }, 1500);
     }
   } catch (error: any) {

@@ -6,7 +6,7 @@ import {
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 
 onAuthStateChanged(auth, (user: any) => {
-  if (!user) window.location.href = "../pages/login.html";
+  if (!user) window.location.href = "/src/pages/login.html";
   else document.body.classList.remove("hidden");
 });
 
@@ -21,7 +21,7 @@ logoutBtn?.addEventListener("click", async () => {
     window.localStorage.removeItem("user");
 
     setTimeout(() => {
-      window.location.href = "../pages/login.html";
+      window.location.href = "/src/pages/login.html";
     }, 1500);
   } catch (error) {
     console.error("Failed SignOut: ", error);
