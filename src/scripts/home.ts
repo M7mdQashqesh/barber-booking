@@ -10,9 +10,23 @@ onAuthStateChanged(auth, (user: any) => {
   else document.body.classList.remove("hidden");
 });
 
-let logoutBtn = document.getElementById(
+const dashboardBtn = document.getElementById(
+  "dashboard-btn"
+) as HTMLButtonElement | null;
+
+const userLocal = window.localStorage.getItem("user");
+const role = userLocal ? JSON.parse(userLocal).uid.slice(-5) : "";
+
+if (role !== "admin") dashboardBtn?.remove();
+
+dashboardBtn?.addEventListener("click", function () {
+  window.location.href = "/src/pages/dashboard/appointments.html";
+});
+
+const logoutBtn = document.getElementById(
   "logout-btn"
 ) as HTMLButtonElement | null;
+
 logoutBtn?.addEventListener("click", async () => {
   try {
     await signOut(auth);

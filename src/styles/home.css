@@ -137,9 +137,12 @@ button.book-appointments.disable {
 /* Header */
 header {
   margin-top: 10px;
+  display: flex;
+  gap: 30px;
+  align-items: center;
 }
-/* Logout Btn */
-.logout-btn {
+/* Btns */
+header > button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -154,27 +157,28 @@ header {
   transition: 400ms;
 }
 
-.logout-btn:hover {
+header > button:hover {
   background-color: transparent;
+  color: black;
 }
 
-.logout-btn i {
+header > button i {
   color: white;
   transition: 400ms;
 }
 
-.logout-btn:hover i {
+header > button:hover i {
   color: black;
 }
 
-.logout-btn .text {
+header > button .text {
   color: white;
   font-weight: 700;
   font-size: 1em;
   transition: 400ms;
 }
 
-.logout-btn:hover .text {
+header > button:hover .text {
   color: black;
 }
 /* Logout Btn */

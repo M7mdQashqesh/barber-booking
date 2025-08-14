@@ -30,13 +30,19 @@ export async function loginAccount(
       userInputs.forEach((input) => {
         if (input) input.value = "";
       });
-      window.localStorage.setItem(
-        "user",
-        JSON.stringify({ email: user.email, uid: user.uid })
-      );
+      if (user.uid !== userSnap.data().userId)
+        window.localStorage.setItem(
+          "user",
+          JSON.stringify({ email: user.email, uid: user.uid + "admin" })
+        );
+      else
+        window.localStorage.setItem(
+          "user",
+          JSON.stringify({ email: user.email, uid: user.uid })
+        );
       setTimeout(() => {
         window.location.href = "../../index.html";
-      }, 1500);
+      }, 1000);
     }
   } catch (error: any) {
     popup("البريد الإلكتروني أو كلمة المرور غير صحيحة، يرجى التحقق مرة أخرى");

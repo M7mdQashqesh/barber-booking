@@ -3,11 +3,12 @@ import { auth } from "../config/firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { loginAccount } from "../services/loginAccount.js";
 
-onAuthStateChanged(auth, (user: any) => {
-  if (user && window.localStorage.getItem("user"))
-    window.location.href = "../../index.html";
-  else document.body.classList.remove("hidden");
-});
+// onAuthStateChanged(auth, (user: any) => {
+//   if (user && window.localStorage.getItem("user"))
+//     window.location.href = "../../index.html";
+//   else document.body.classList.remove("hidden");
+// });
+document.body.classList.remove("hidden");
 
 const form = document.querySelector("form");
 form?.addEventListener("submit", async (e) => {
