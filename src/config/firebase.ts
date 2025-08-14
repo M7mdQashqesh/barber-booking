@@ -1,8 +1,5 @@
-// @ts-ignore
 import { initializeApp } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-app.js";
-// @ts-ignore
 import { getAuth } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-// @ts-ignore
 import { getFirestore } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 const firebaseConfig = {

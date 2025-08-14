@@ -3,18 +3,17 @@ import { firestore, auth } from "../config/firebase.js";
 import {
   doc,
   setDoc,
-  getDoc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 import {
-  GoogleAuthProvider,
-  signInWithPopup,
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  signOut,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { Iauth } from "../types/authTypes.js";
 
 onAuthStateChanged(auth, (user: any) => {
-  if (user) window.location.href = "../pages/index.html";
+  if (user && window.localStorage.getItem("user"))
+    window.location.href = "../pages/index.html";
   else document.body.classList.remove("hidden");
 });
 
@@ -75,7 +74,7 @@ form?.addEventListener("submit", async (e) => {
     userInputs.forEach((input) => {
       if (input) input.value = "";
     });
-
+    await signOut(auth);
     setTimeout(() => {
       window.location.href = "../pages/login.html";
     }, 1500);
@@ -130,36 +129,3 @@ function validateSignup(
 
   return true;
 }
-
-const googleBtn = document.getElementById(
-  "google-btn"
-) as HTMLButtonElement | null;
-
-googleBtn?.addEventListener("click", async () => {
-  try {
-    const provider = new GoogleAuthProvider();
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    if (!user.email || !user.displayName)
-      throw new Error("Google Account Is Missing Email or Display Name");
-
-    const useRef = doc(firestore, "users", user.email);
-    const userSnap = await getDoc(useRef, "users", user.email);
-
-    if (!userSnap.exists()) {
-      const userData: Iauth = {
-        createdAt: new Date().toISOString(),
-        fullname: user.displayName,
-        email: user.email,
-      };
-      await setDoc(useRef, userData);
-      popup("تم انشاء الحساب بنجاح");
-      setTimeout(() => {
-        window.location.href = "../pages/login.html";
-      }, 1500);
-    } else popup("الحساب مسجل بالفعل");
-  } catch (error: any) {
-    console.error("Error while Create Account: ", error.message);
-  }
-});

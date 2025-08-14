@@ -95,60 +95,6 @@ main.split > .right-side form > input[type="submit"]:hover {
 }
 /* Form */
 
-/* Google Login */
-main.split > .right-side .alternative-login > p {
-  margin: 20px 0 30px;
-  position: relative;
-}
-
-main.split > .right-side .alternative-login > p::before {
-  content: "";
-  position: absolute;
-  background-color: gray;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: -100;
-  width: 100%;
-  height: 1px;
-}
-
-main.split > .right-side .alternative-login > p::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%);
-  height: 30px;
-  width: 160px;
-  background-color: white;
-  z-index: -10;
-}
-
-main.split > .right-side .alternative-login > button {
-  padding: 10px 20px;
-  border: 2px solid black;
-  background-color: white;
-  border-radius: 25px;
-  font-size: 16px;
-  outline: none;
-  margin-bottom: 20px;
-  cursor: pointer;
-  width: 100%;
-  transition: 0.2s ease;
-}
-
-@media (max-width: 767px) {
-  main.split > .right-side .alternative-login > button {
-    margin-bottom: 120px;
-  }
-}
-
-main.split > .right-side .alternative-login > button:hover {
-  background-color: black;
-  color: white;
-}
-/* Google Login */
-
 /* Create Account */
 .right-side > p.create-account {
   position: absolute;
