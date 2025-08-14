@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Title Tag -->
-    <title>Barbershop | Dashboard Booking Appointments Page</title>
+    <title>Barbershop | Dashboard Create Appointments Page</title>
     <!-- FontAwesome Library -->
     <link
       rel="stylesheet"
@@ -17,7 +17,7 @@
     <!-- Style CSS File -->
     <link rel="stylesheet" href="../../styles/style.css" />
     <!-- Booking Appointments CSS File -->
-    <link rel="stylesheet" href="../../styles/appointments.css" />
+    <link rel="stylesheet" href="../../styles/createAppointments.css" />
   </head>
   <body>
     <div class="split">
@@ -53,14 +53,24 @@
         </ul>
       </div>
       <div class="container">
-        <div class="search" id="search">
-          <i class="fa-solid fa-magnifying-glass"></i>
-          <input type="search" />
-        </div>
-        <p class="booking-appointments">المواعيد المحجوزة</p>
-        <main></main>
+        <p class="create-appointments">إنشاء المواعيد</p>
+        <main>
+          <form action="#">
+            <div>
+              <label for="open-hour">ساعة فتح المحل</label>
+              <input type="time" />
+            </div>
+            <div>
+              <label for="open-hour">ساعة اغلاق المحل</label>
+              <input type="time" />
+            </div>
+          </form>
+        </main>
       </div>
     </div>
-    <script type="module" src="../../../dist/scripts/appointments.js"></script>
+    <script
+      type="module"
+      src="../../../dist/scripts/createAppointments.js"
+    ></script>
   </body>
 </html>

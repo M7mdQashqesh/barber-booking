@@ -1,0 +1,27 @@
+.split .container main > form {
+  padding: 40px;
+  border: 1px solid rgba(128, 128, 128, 0.1);
+  border-radius: 10px;
+  box-shadow: 1px 4px 10px 1px rgba(128, 128, 128, 0.3);
+  background-color: white;
+}
+
+.split .container main > form > div {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.split .container main > form > div label {
+  width: 200px;
+  font-size: 18px;
+}
+
+.split .container main > form > div > input {
+  padding: 5px 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.split .container main > form > div:last-of-type {
+  margin-top: 300px;
+}
