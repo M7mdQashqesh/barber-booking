@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc && npx ncp src/assets dist/assets",
+    "build": "tsc && npx ncp src/assets public/assets",
     "dev": "tsc --watch"
   },
   "keywords": [],
