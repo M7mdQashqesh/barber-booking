@@ -53,18 +53,23 @@
         </ul>
       </div>
       <div class="container">
-        <p class="create-appointments">إنشاء المواعيد</p>
         <main>
+          <p class="create-appointments">إنشاء المواعيد</p>
           <form action="#">
             <div>
               <label for="open-hour">ساعة فتح المحل</label>
-              <input type="time" />
+              <input id="open-hour" type="time" required />
             </div>
             <div>
-              <label for="open-hour">ساعة اغلاق المحل</label>
-              <input type="time" />
+              <label for="close-hour">ساعة اغلاق المحل</label>
+              <input id="close-hour" type="time" required />
             </div>
+            <input type="submit" value="إنشاء" />
           </form>
+          <p>كافة المواعيد</p>
+          <div class="create-appointments-area">
+            <ul></ul>
+          </div>
         </main>
       </div>
     </div>

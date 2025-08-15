@@ -12,6 +12,10 @@ ul {
   list-style: none;
 }
 
+.hidden {
+  display: none;
+}
+
 .container {
   margin: 0 auto;
   padding: 0 15px;
@@ -103,10 +107,4 @@ ul {
 
 .split > .container {
   margin-top: 20px;
-}
-
-.split > .container > p {
-  margin: 30px 0;
-  font-size: 30px;
-  font-weight: bold;
 }

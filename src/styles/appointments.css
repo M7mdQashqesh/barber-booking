@@ -11,6 +11,12 @@
   cursor: pointer;
 }
 
+.split > .container > p {
+  margin: 30px 0;
+  font-size: 30px;
+  font-weight: bold;
+}
+
 .split .container .search input[type="search"] {
   border: none;
   border-bottom: 1px solid gray;
