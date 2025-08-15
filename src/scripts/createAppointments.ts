@@ -1,8 +1,9 @@
-import { popup } from "../components/popup.js";
 import { auth } from "../config/firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { generateTimeSlots } from "../services/generateTimeSlots.js";
-import { renderSlots } from "../services/renderSlots.js";
+import { getAppointments } from "../services/getAppointments.js";
+
+getAppointments("create-appointments-area");
 
 onAuthStateChanged(auth, (user: any) => {
   if (!user) window.location.href = "/src/pages/login.html";
@@ -11,7 +12,8 @@ onAuthStateChanged(auth, (user: any) => {
 
 const createAppointmentsForm = document.querySelector("form") as HTMLElement;
 
-createAppointmentsForm.addEventListener("submit", (e) => {
+// Creating Opening and Closing Time and format it
+createAppointmentsForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const openingTimeInput = document.getElementById(
@@ -52,8 +54,16 @@ createAppointmentsForm.addEventListener("submit", (e) => {
     closingTimePeriod
   );
 
-  const slots: string[] = generateTimeSlots(openingTime, closingTime);
-  renderSlots(slots, "create-appointments-area");
+  // Generate Time Slots depend on Opening and Closing Time
+  generateTimeSlots(openingTime, closingTime);
+
+  const timeInfo: [HTMLInputElement, HTMLInputElement] = [
+    openingTimeInput,
+    closingTimeInput,
+  ];
+  timeInfo.forEach((input) => (input.value = ""));
+
+  getAppointments("create-appointments-area");
 });
 
 function formatTime(timeHour: number, timeMinute: number, timePeriod: string) {

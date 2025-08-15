@@ -1,9 +1,15 @@
 import { popup } from "../components/popup.js";
+import { firestore } from "../config/firebase.js";
+import {
+  collection,
+  addDoc,
+} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
-export function generateTimeSlots(
+// Generate TimeSlots and store it in firebase
+export async function generateTimeSlots(
   openingTime: string,
   closingTime: string
-): string[] {
+) {
   if (!openingTime || !closingTime)
     popup("يجب ادخال وقت فتح المحل ووقت اغلاق المحل");
 
@@ -40,5 +46,11 @@ export function generateTimeSlots(
     timeSlots.push(timeSlot);
   }
 
-  return timeSlots;
+  try {
+    const collRef = collection(firestore, "allAppointments");
+    await addDoc(collRef, { timeSlots });
+    popup("تم انشاء المواعيد بنجاح");
+  } catch (error) {
+    console.error(error);
+  }
 }

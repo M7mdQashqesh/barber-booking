@@ -4,13 +4,19 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
-import { generateTimeSlots } from "../services/generateTimeSlots.js";
-import { renderSlots } from "../services/renderSlots.js";
+import { getAppointments } from "../services/getAppointments.js";
 
 onAuthStateChanged(auth, (user: any) => {
   if (!user) window.location.href = "/src/pages/login.html";
   else document.body.classList.remove("hidden");
 });
+
+getAppointments("appointments-area");
+
+window.localStorage.setItem(
+  "appointments",
+  JSON.stringify(window.localStorage.getItem("appointments") || [])
+);
 
 const dashboardBtn = document.getElementById(
   "dashboard-btn"
@@ -70,13 +76,6 @@ const [day, month, year] = [
 ];
 const dateField = document.getElementById("date") as HTMLElement;
 if (dateField) dateField.textContent = `${day}/${month}/${year}`;
-
-/* Test Open And Close Time and Render Slots */
-const openingTime: string = "10:00AM";
-const closingTime: string = "12:00PM";
-const slots: string[] = generateTimeSlots(openingTime, closingTime);
-renderSlots(slots, "appointments-area");
-/* Test Open And Close Time and Render Slots */
 
 /* Add Booking Appointments To Local Storage */
 bookBtn?.addEventListener("click", saveAppointmentsToLocal);
