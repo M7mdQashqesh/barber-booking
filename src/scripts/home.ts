@@ -1,16 +1,12 @@
 import { popup } from "../components/popup.js";
-import { app, auth } from "../config/firebase.js";
-import {
-  onAuthStateChanged,
-  signOut,
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { auth } from "../config/firebase.js";
+import { signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { getAppointments } from "../services/getAppointments.js";
 import { bookAppointments } from "../services/bookAppointments.js";
+import { checkAuthStatus } from "../services/checkAuthStatus.js";
+import { logout } from "../services/logout.js";
 
-onAuthStateChanged(auth, (user: any) => {
-  if (!user) window.location.href = "/src/pages/login.html";
-  else document.body.classList.remove("hidden");
-});
+checkAuthStatus("home", "/src/pages/login.html");
 
 const dashboardBtn = document.getElementById(
   "dashboard-btn"
@@ -28,21 +24,7 @@ dashboardBtn?.addEventListener("click", function () {
 const logoutBtn = document.getElementById(
   "logout-btn"
 ) as HTMLButtonElement | null;
-
-logoutBtn?.addEventListener("click", async () => {
-  try {
-    await signOut(auth);
-
-    popup("تم تسجيل الخروج بنجاح");
-    window.localStorage.removeItem("user");
-
-    setTimeout(() => {
-      window.location.href = "/src/pages/login.html";
-    }, 1500);
-  } catch (error) {
-    console.error("Failed SignOut: ", error);
-  }
-});
+logoutBtn?.addEventListener("click", logout);
 
 const days: string[] = [
   "الأحد",
@@ -60,7 +42,7 @@ export const bookBtn = document.getElementById(
 
 const appointments = await getAppointments("appointments-area");
 
-bookBtn.addEventListener("click", () => {
+bookBtn?.addEventListener("click", () => {
   bookAppointments(appointments);
 });
 

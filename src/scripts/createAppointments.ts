@@ -2,13 +2,12 @@ import { auth } from "../config/firebase.js";
 import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { generateTimeSlots } from "../services/generateTimeSlots.js";
 import { getAppointments } from "../services/getAppointments.js";
+import { checkAuthStatus } from "../services/checkAuthStatus.js";
+import { logout } from "../services/logout.js";
 
 getAppointments("create-appointments-area");
 
-onAuthStateChanged(auth, (user: any) => {
-  if (!user) window.location.href = "/src/pages/login.html";
-  else document.body.classList.remove("hidden");
-});
+checkAuthStatus("createAppointments", "/src/pages/login.html");
 
 const createAppointmentsForm = document.querySelector("form") as HTMLElement;
 
@@ -80,3 +79,7 @@ function formatTime(timeHour: number, timeMinute: number, timePeriod: string) {
     .toString()
     .padStart(2, "0")}${timePeriod}`;
 }
+
+
+const logoutBtn = document.getElementById("logout") as HTMLElement;
+logoutBtn?.addEventListener("click", logout);

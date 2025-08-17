@@ -1,14 +1,8 @@
 import { popup } from "../components/popup.js";
-import { auth } from "../config/firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { loginAccount } from "../services/loginAccount.js";
+import { checkAuthStatus } from "../services/checkAuthStatus.js";
 
-// onAuthStateChanged(auth, (user: any) => {
-//   if (user && window.localStorage.getItem("user"))
-//     window.location.href = "../../index.html";
-//   else document.body.classList.remove("hidden");
-// });
-document.body.classList.remove("hidden");
+checkAuthStatus("login", "../../index.html");
 
 const form = document.querySelector("form");
 form?.addEventListener("submit", async (e) => {

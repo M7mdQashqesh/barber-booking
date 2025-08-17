@@ -1,14 +1,8 @@
-import { auth } from "../config/firebase.js";
-import {
-  signOut,
-  onAuthStateChanged,
-} from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
+import { checkAuthStatus } from "../services/checkAuthStatus.js";
+import { logout } from "../services/logout.js";
 const searchDiv = document.getElementById("search");
 
-onAuthStateChanged(auth, (user: any) => {
-  if (!user) window.location.href = "/src/pages/login.html";
-  else document.body.classList.remove("hidden");
-});
+checkAuthStatus("appointments", "/src/pages/login.html");
 
 searchDiv?.addEventListener("click", function () {
   const searchInput = document.querySelector(
@@ -17,9 +11,5 @@ searchDiv?.addEventListener("click", function () {
   searchInput.focus();
 });
 
-const logoutBtn = document.getElementById("logout") as HTMLElement | null;
-logoutBtn?.addEventListener("click", async function () {
-  await signOut(auth);
-  window.localStorage.removeItem("user");
-  window.location.href = "/src/pages/login.html";
-});
+const logoutBtn = document.getElementById("logout") as HTMLElement;
+logoutBtn?.addEventListener("click", logout);

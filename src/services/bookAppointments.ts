@@ -34,7 +34,12 @@ export async function bookAppointments(appointments: any) {
         }
       }
     }
-    if (selectedAppointments.length > 0) popup("تم حجز الموعد");
+    if (selectedAppointments.length > 0) {
+      popup("تم حجز الموعد");
+      setTimeout(() => {
+        window.location.reload();
+      }, 600);
+    }
 
     for (let i = 0; i < appointments.length; i++) {
       for (const appointment of unSelectedAppointments) {
@@ -50,6 +55,9 @@ export async function bookAppointments(appointments: any) {
     if (unSelectedAppointments.length > 0) {
       popup("تم إلغاء الموعد");
       bookBtn.textContent = "إحجز الموعد";
+      setTimeout(() => {
+        window.location.reload();
+      }, 600);
     }
 
     if (
