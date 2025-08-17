@@ -98,6 +98,12 @@
   }
 }
 
+.appointments .appointments-area ul li.disable {
+  cursor: no-drop;
+  background-color: gray;
+  color: white;
+}
+
 .appointments .appointments-area ul li.select {
   background-color: black;
   color: white;
@@ -106,7 +112,6 @@
 }
 
 button.book-appointments {
-  display: block;
   width: 100%;
   padding: 10px;
   margin: 0 auto 50px;

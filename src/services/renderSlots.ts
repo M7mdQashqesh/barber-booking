@@ -1,61 +1,62 @@
-import { bookBtn, checkBookBtnStatus } from "../scripts/home.js";
+import { bookBtn } from "../scripts/home.js";
 
-export function renderSlots(slots: string[], area: string): void {
-  if (area === "appointments-area") {
+let selectedLi: string[] = [];
+let unSelectedLi: string[] = [];
+let bookedTime: string[] = [];
+export function renderSlots(slots: any, area: string): void {
+  if (
+    area === "appointments-area" &&
+    (slots.status === "available" ||
+      slots.userId === JSON.parse(window.localStorage.getItem("user")!).uid)
+  ) {
     const appointmentsArea = document.querySelector(
       `.${area} ul`
     ) as HTMLElement;
     if (!appointmentsArea) return;
-    const localSlots = window.localStorage.getItem("appointments");
-    let selectedAppointments: string[] = localSlots
-      ? JSON.parse(localSlots)
-      : [];
 
-    for (let i: number = 0; i < slots.length - 1; i++) {
-      const li = document.createElement("li") as HTMLElement;
-      li.textContent = slots[i] ?? "";
-      if (selectedAppointments.includes(li.textContent))
+    const li = document.createElement("li") as HTMLElement;
+    li.textContent = slots.slot ?? "";
+    if (slots.status === "Booked") {
+      li.classList.add("select");
+      bookedTime.push(slots.slot);
+    }
+
+    appointmentsArea.appendChild(li);
+
+    li.addEventListener("click", function () {
+      if (!li.classList.contains("select")) {
         li.classList.add("select");
-      if (selectedAppointments.length === 0) bookBtn.classList.add("disable");
-      checkBookBtnStatus();
+        selectedLi.push(li.textContent);
+        unSelectedLi = unSelectedLi.filter((item) => item !== li.textContent);
+      } else {
+        li.classList.remove("select");
+        unSelectedLi.push(li.textContent);
+        selectedLi = selectedLi.filter((item) => item !== li.textContent);
+      }
+      if (bookedTime.includes(li.textContent))
+        bookBtn.textContent = "إلغاء الحجز";
+      else bookBtn.textContent = "إحجز الموعد";
 
-      li.addEventListener("click", function () {
-        if (!li.classList.contains("select")) {
-          li.classList.add("select");
-          selectedAppointments.push(li.textContent ?? "");
-        } else {
-          li.classList.remove("select");
-          selectedAppointments = selectedAppointments.filter(
-            (item) => item !== li.textContent
-          );
-        }
-        window.sessionStorage.setItem(
-          "appointments",
-          JSON.stringify(selectedAppointments)
-        );
-        if (selectedAppointments.length !== 0) {
-          bookBtn.classList.remove("disable");
-          bookBtn.textContent = "إحجز الموعد";
-        } else if (
-          selectedAppointments.length === 0 &&
-          JSON.parse(window.localStorage.getItem("appointments")!).length !== 0
-        ) {
-          bookBtn.textContent = "إلغاء الحجز";
-          bookBtn.classList.remove("disable");
-        }
-      });
-      appointmentsArea.appendChild(li);
-    }
-  } else if (area === "create-appointments-area") {
+      window.sessionStorage.setItem(
+        "sessionSelectedAppointments",
+        JSON.stringify(selectedLi)
+      );
+      window.sessionStorage.setItem(
+        "sessionUnSelectedAppointments",
+        JSON.stringify(unSelectedLi)
+      );
+    });
+  } else if (
+    area === "create-appointments-area" &&
+    slots.status === "available"
+  ) {
     const appointmentsArea = document.querySelector(
       `.${area} ul`
     ) as HTMLElement;
     if (!appointmentsArea) return;
 
-    for (let i: number = 0; i < slots.length - 1; i++) {
-      const li = document.createElement("li") as HTMLElement;
-      li.textContent = slots[i] ?? "";
-      appointmentsArea.appendChild(li);
-    }
+    const li = document.createElement("li") as HTMLElement;
+    li.textContent = slots.slot ?? "";
+    appointmentsArea.appendChild(li);
   }
 }

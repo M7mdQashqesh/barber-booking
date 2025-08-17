@@ -1,22 +1,16 @@
 import { popup } from "../components/popup.js";
-import { auth } from "../config/firebase.js";
+import { app, auth } from "../config/firebase.js";
 import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { getAppointments } from "../services/getAppointments.js";
+import { bookAppointments } from "../services/bookAppointments.js";
 
 onAuthStateChanged(auth, (user: any) => {
   if (!user) window.location.href = "/src/pages/login.html";
   else document.body.classList.remove("hidden");
 });
-
-getAppointments("appointments-area");
-
-window.localStorage.setItem(
-  "appointments",
-  JSON.stringify(window.localStorage.getItem("appointments") || [])
-);
 
 const dashboardBtn = document.getElementById(
   "dashboard-btn"
@@ -64,6 +58,12 @@ export const bookBtn = document.getElementById(
   "book-appointments"
 ) as HTMLElement;
 
+const appointments = await getAppointments("appointments-area");
+
+bookBtn.addEventListener("click", () => {
+  bookAppointments(appointments);
+});
+
 /* Date & Day Rendering */
 const todayIndex: number = now.getDay();
 const dayField = document.getElementById("day") as HTMLElement;
@@ -76,36 +76,3 @@ const [day, month, year] = [
 ];
 const dateField = document.getElementById("date") as HTMLElement;
 if (dateField) dateField.textContent = `${day}/${month}/${year}`;
-
-/* Add Booking Appointments To Local Storage */
-bookBtn?.addEventListener("click", saveAppointmentsToLocal);
-
-function saveAppointmentsToLocal() {
-  const sessionStored = window.sessionStorage.getItem("appointments");
-  const savedAppointments = sessionStored ? JSON.parse(sessionStored) : [];
-  window.localStorage.setItem(
-    "appointments",
-    JSON.stringify(savedAppointments)
-  );
-  if (bookBtn.textContent === "إلغاء الحجز") popup("تم الغاء حجز الموعد");
-  else popup("تم حجز الموعد");
-
-  window.sessionStorage.clear();
-  checkBookBtnStatus();
-}
-
-export function checkBookBtnStatus(): void {
-  if (
-    JSON.parse(window.sessionStorage.getItem("appointments")!) === null ||
-    (JSON.parse(window.sessionStorage.getItem("appointments")!).length === 0 &&
-      JSON.parse(window.localStorage.getItem("appointments")!).length > 0)
-  )
-    bookBtn.classList.add("disable");
-
-  if (
-    JSON.parse(window.sessionStorage.getItem("appointments")!) ===
-    JSON.parse(window.localStorage.getItem("appointments")!)
-  ) {
-    bookBtn.classList.add("disable");
-  }
-}

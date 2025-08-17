@@ -3,6 +3,8 @@ import { firestore } from "../config/firebase.js";
 import {
   collection,
   addDoc,
+  doc,
+  setDoc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
 
 // Generate TimeSlots and store it in firebase
@@ -47,8 +49,16 @@ export async function generateTimeSlots(
   }
 
   try {
-    const collRef = collection(firestore, "allAppointments");
-    await addDoc(collRef, { timeSlots });
+    for (let i = 0; i < timeSlots.length - 1; i++) {
+      const useRef = doc(firestore, "allAppointments", timeSlots[i]);
+      await setDoc(useRef, {
+        slot: timeSlots[i],
+        owner: "admin",
+        status: "available",
+        userId: null,
+      });
+    }
+
     popup("تم انشاء المواعيد بنجاح");
   } catch (error) {
     console.error(error);
