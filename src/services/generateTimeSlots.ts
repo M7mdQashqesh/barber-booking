@@ -55,11 +55,10 @@ export async function generateTimeSlots(
         slot: timeSlots[i],
         owner: "admin",
         status: "available",
-        userId: null,
+        fullname: null,
       });
     }
 
-    popup("تم انشاء المواعيد بنجاح");
   } catch (error) {
     console.error(error);
   }

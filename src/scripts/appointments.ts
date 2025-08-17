@@ -1,4 +1,5 @@
 import { checkAuthStatus } from "../services/checkAuthStatus.js";
+import { getAppointments } from "../services/getAppointments.js";
 import { logout } from "../services/logout.js";
 const searchDiv = document.getElementById("search");
 
@@ -13,3 +14,5 @@ searchDiv?.addEventListener("click", function () {
 
 const logoutBtn = document.getElementById("logout") as HTMLElement;
 logoutBtn?.addEventListener("click", logout);
+
+getAppointments(".appointments-table table");

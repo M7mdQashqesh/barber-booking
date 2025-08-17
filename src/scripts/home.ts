@@ -1,6 +1,3 @@
-import { popup } from "../components/popup.js";
-import { auth } from "../config/firebase.js";
-import { signOut } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { getAppointments } from "../services/getAppointments.js";
 import { bookAppointments } from "../services/bookAppointments.js";
 import { checkAuthStatus } from "../services/checkAuthStatus.js";
@@ -40,7 +37,7 @@ export const bookBtn = document.getElementById(
   "book-appointments"
 ) as HTMLElement;
 
-const appointments = await getAppointments("appointments-area");
+const appointments = await getAppointments(".appointments-area ul");
 
 bookBtn?.addEventListener("click", () => {
   bookAppointments(appointments);

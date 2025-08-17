@@ -33,12 +33,20 @@ export async function loginAccount(
       if (user.uid !== userSnap.data().userId)
         window.localStorage.setItem(
           "user",
-          JSON.stringify({ email: user.email, uid: user.uid + "admin" })
+          JSON.stringify({
+            email: user.email,
+            uid: user.uid + "admin",
+            fullname: userSnap.data().fullname,
+          })
         );
       else
         window.localStorage.setItem(
           "user",
-          JSON.stringify({ email: user.email, uid: user.uid })
+          JSON.stringify({
+            email: user.email,
+            uid: user.uid,
+            fullname: userSnap.data().fullname,
+          })
         );
       setTimeout(() => {
         window.location.href = "../../index.html";

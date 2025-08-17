@@ -1,11 +1,9 @@
-import { auth } from "../config/firebase.js";
-import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-auth.js";
 import { generateTimeSlots } from "../services/generateTimeSlots.js";
 import { getAppointments } from "../services/getAppointments.js";
 import { checkAuthStatus } from "../services/checkAuthStatus.js";
 import { logout } from "../services/logout.js";
 
-getAppointments("create-appointments-area");
+getAppointments(".create-appointments-area ul");
 
 checkAuthStatus("createAppointments", "/src/pages/login.html");
 
@@ -54,7 +52,7 @@ createAppointmentsForm.addEventListener("submit", async (e) => {
   );
 
   // Generate Time Slots depend on Opening and Closing Time
-  generateTimeSlots(openingTime, closingTime);
+  await generateTimeSlots(openingTime, closingTime);
 
   const timeInfo: [HTMLInputElement, HTMLInputElement] = [
     openingTimeInput,
@@ -62,7 +60,8 @@ createAppointmentsForm.addEventListener("submit", async (e) => {
   ];
   timeInfo.forEach((input) => (input.value = ""));
 
-  getAppointments("create-appointments-area");
+  getAppointments(".create-appointments-area ul");
+  window.location.reload();
 });
 
 function formatTime(timeHour: number, timeMinute: number, timePeriod: string) {
@@ -79,7 +78,6 @@ function formatTime(timeHour: number, timeMinute: number, timePeriod: string) {
     .toString()
     .padStart(2, "0")}${timePeriod}`;
 }
-
 
 const logoutBtn = document.getElementById("logout") as HTMLElement;
 logoutBtn?.addEventListener("click", logout);

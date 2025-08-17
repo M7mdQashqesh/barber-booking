@@ -15,13 +15,10 @@ export async function getAppointments(area: string) {
     const collRef = collection(firestore, "allAppointments");
     const snapshot = await getDocs(collRef);
 
-    const appointmentsArea = document.querySelector(
-      `.${area} ul`
-    ) as HTMLElement;
+    const appointmentsArea = document.querySelector(area) as HTMLElement;
     if (!appointmentsArea) return;
 
     if (snapshot.docs.length > 0) {
-      appointmentsArea.textContent = "";
       snapshot.docs.forEach((doc: any) => {
         renderSlots(doc.data(), area);
         appointments.push(doc.data().slot);
