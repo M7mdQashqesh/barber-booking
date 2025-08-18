@@ -1,8 +1,6 @@
 import { popup } from "../components/popup.js";
 import { firestore } from "../config/firebase.js";
 import {
-  collection,
-  addDoc,
   doc,
   setDoc,
 } from "https://www.gstatic.com/firebasejs/12.1.0/firebase-firestore.js";
@@ -53,12 +51,11 @@ export async function generateTimeSlots(
       const useRef = doc(firestore, "allAppointments", timeSlots[i]);
       await setDoc(useRef, {
         slot: timeSlots[i],
-        owner: "admin",
+        userId: null,
         status: "available",
         fullname: null,
       });
     }
-
   } catch (error) {
     console.error(error);
   }

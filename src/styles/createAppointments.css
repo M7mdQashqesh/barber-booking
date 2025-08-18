@@ -15,6 +15,13 @@
   align-items: center;
 }
 
+@media (max-width: 991px) {
+  .split .container main > form {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+
 .split .container main > form > div {
   display: flex;
   align-items: center;
@@ -43,6 +50,12 @@
   font-size: 18px;
   cursor: pointer;
   transition: box-shadow 0.2s ease;
+}
+
+@media (max-width: 991px) {
+  .split .container main > form > input[type="submit"] {
+    width: 100%;
+  }
 }
 
 .split .container main > form > input[type="submit"]:hover {

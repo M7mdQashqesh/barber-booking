@@ -21,6 +21,8 @@
   </head>
   <body>
     <div class="split">
+      <i class="fa-solid fa-bars"></i>
+
       <div class="side-menu">
         <div class="logo">
           <img src="../../assets/banner-bg.png" alt="" />
@@ -58,15 +60,15 @@
           <form action="#">
             <div>
               <label for="open-hour">ساعة فتح المحل</label>
-              <input id="open-hour" type="time" required />
+              <input id="open-hour" type="time" step="1800" required />
             </div>
             <div>
               <label for="close-hour">ساعة اغلاق المحل</label>
-              <input id="close-hour" type="time" required />
+              <input id="close-hour" type="time" step="1800" required />
             </div>
             <input type="submit" value="إنشاء" />
           </form>
-          <p>كافة المواعيد</p>
+          <p>كافة المواعيد المتاحة</p>
           <div class="create-appointments-area">
             <div class="loader" id="loader"></div>
             <ul></ul>

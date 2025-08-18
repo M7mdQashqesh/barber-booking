@@ -1,3 +1,12 @@
+@media (max-width: 991px) {
+  .split > .container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+  }
+}
+
 /* Search Div */
 .split .container .search {
   border: 1px solid gray;

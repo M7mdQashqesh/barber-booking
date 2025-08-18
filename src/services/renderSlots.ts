@@ -1,3 +1,4 @@
+import { confirmMessage } from "../components/confirmMessage.js";
 import { bookBtn } from "../scripts/home.js";
 
 let selectedLi: string[] = [];
@@ -7,12 +8,7 @@ export function renderSlots(slots: any, area: string): void {
   const appointmentsArea = document.querySelector(area) as HTMLElement;
   if (!appointmentsArea) return;
 
-  if (
-    area === ".appointments-area ul" &&
-    (slots.status === "available" ||
-      slots.fullname ===
-        JSON.parse(window.localStorage.getItem("user")!).fullname)
-  ) {
+  if (area === ".appointments-area ul") {
     const li = document.createElement("li") as HTMLElement;
     li.textContent = slots.slot ?? "";
     if (slots.status === "Booked") {
@@ -45,20 +41,23 @@ export function renderSlots(slots: any, area: string): void {
         JSON.stringify(unSelectedLi)
       );
     });
-  } else if (
-    area === ".create-appointments-area ul" &&
-    slots.status === "available"
-  ) {
+  } 
+  
+  else if (area === ".create-appointments-area ul") {
     const li = document.createElement("li") as HTMLElement;
     li.textContent = slots.slot ?? "";
     appointmentsArea.appendChild(li);
-  } else if (area === ".appointments-table table" &&
-    slots.status === "Booked") {
+    li.addEventListener("click", function () {
+      confirmMessage(li.textContent);
+    });
+  } 
+  
+  else if (area === ".appointments-table table") {
     const tr = document.createElement("tr");
     const td1 = document.createElement("td");
     td1.textContent = slots.fullname;
     tr.appendChild(td1);
-    
+
     const td2 = document.createElement("td");
     td2.textContent = slots.slot;
     tr.appendChild(td2);

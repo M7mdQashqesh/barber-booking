@@ -29,6 +29,7 @@ export async function bookAppointments(appointments: any) {
           const useRef = doc(firestore, "allAppointments", appointments[i]);
           await updateDoc(useRef, {
             status: "Booked",
+            userId: JSON.parse(window.localStorage.getItem("user")!).uid,
             fullname: JSON.parse(window.localStorage.getItem("user")!).fullname,
           });
         }
@@ -47,6 +48,7 @@ export async function bookAppointments(appointments: any) {
           const useRef = doc(firestore, "allAppointments", appointments[i]);
           await updateDoc(useRef, {
             status: "available",
+            userId: null,
             fullname: null,
           });
         }
